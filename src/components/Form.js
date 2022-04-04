@@ -33,10 +33,17 @@ const Form = () => {
 
   return (
     <div>
+      <h1>Add new member</h1>
       <form onSubmit={submitHandler}>
         {data.map((item, index) => (
           <div key={index}>
             <TextField
+              color="warning"
+              sx={{
+                width: "150px",
+                padding: "0px 5px 10px",
+                marginTop: "10px",
+              }}
               name="firstName"
               label="FirstName"
               type="text"
@@ -46,6 +53,8 @@ const Form = () => {
               onChange={(e) => changeHandle(index, e)}
             />
             <TextField
+              color="warning"
+              sx={{ width: "150px", padding: "0 5px 10px", marginTop: "10px" }}
               name="lastName"
               label="lastName"
               type="text"
@@ -55,20 +64,31 @@ const Form = () => {
               onChange={(e) => changeHandle(index, e)}
             />
             {index > 0 && (
-              <IconButton onClick={() => deleteHandler(index)}>
+              <IconButton
+                color="error"
+                sx={{ margin: "15px 0" }}
+                onClick={() => deleteHandler(index)}
+              >
                 <RemoveIcon />
               </IconButton>
             )}
-            <IconButton onClick={() => addHandler()}>
+            <IconButton
+              color="success"
+              sx={{ margin: "15px 0" }}
+              onClick={() => addHandler()}
+            >
               <AddIcon />
             </IconButton>
+            <hr />
           </div>
         ))}
         <Button
+          sx={{ margin: "5px" }}
           onClick={submitHandler}
           size="small"
           type="submit"
           variant="contained"
+          color="success"
           endIcon={<SendIcon />}
         >
           Send

@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+}
+body {
+  font-family: tahoma, Arial, Helvetica, sans-serif;
+}
+h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: #777777;
+}
+form {
+  margin-top: 50px;
+}
