@@ -20,6 +20,16 @@ const Form = () => {
     e.preventDefault();
     console.log("data", data);
   };
+  // add form
+  const addHandler = () => {
+    setData([...data, { firstName: "", lastName: "" }]);
+  };
+  // delete form
+  const deleteHandler = (index) => {
+    const values = [...data];
+    values.splice(index, 1);
+    setData(values);
+  };
 
   return (
     <div>
@@ -44,10 +54,12 @@ const Form = () => {
               value={item.lastName}
               onChange={(e) => changeHandle(index, e)}
             />
-            <IconButton>
-              <RemoveIcon />
-            </IconButton>
-            <IconButton>
+            {index > 0 && (
+              <IconButton onClick={() => deleteHandler(index)}>
+                <RemoveIcon />
+              </IconButton>
+            )}
+            <IconButton onClick={() => addHandler()}>
               <AddIcon />
             </IconButton>
           </div>
