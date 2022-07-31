@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import {
+  TextField,
+  Button,
+  Box,
+  Container,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/material";
 // icons
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import SendIcon from "@mui/icons-material/Send";
-import { IconButton } from "@mui/material";
 
 const Form = () => {
   const [data, setData] = useState([{ firstName: "", lastName: "" }]);
@@ -32,42 +38,47 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <h1>Add new member</h1>
+    <Container maxWidth="lg">
+      <Typography variant="h3" color="text.secondary" textAlign="center">
+        Add new member
+      </Typography>
       <form onSubmit={submitHandler}>
         {data.map((item, index) => (
-          <div key={index}>
-            <TextField
-              color="warning"
-              sx={{
-                width: "150px",
-                padding: "0px 5px 10px",
-                marginTop: "10px",
-              }}
-              name="firstName"
-              label="FirstName"
-              type="text"
-              size="small"
-              variant="filled"
-              value={item.firstName}
-              onChange={(e) => changeHandle(index, e)}
-            />
-            <TextField
-              color="warning"
-              sx={{ width: "150px", padding: "0 5px 10px", marginTop: "10px" }}
-              name="lastName"
-              label="lastName"
-              type="text"
-              size="small"
-              variant="filled"
-              value={item.lastName}
-              onChange={(e) => changeHandle(index, e)}
-            />
+          <Box component="div" key={index} display="flex" alignItems="center">
+            <Grid container spacing={1}>
+              <Grid item xs={6}>
+                <TextField
+                  color="primary"
+                  name="firstName"
+                  label="FirstName"
+                  type="text"
+                  size="small"
+                  variant="filled"
+                  value={item.firstName}
+                  onChange={(e) => changeHandle(index, e)}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  color="primary"
+                  name="lastName"
+                  label="lastName"
+                  type="text"
+                  size="small"
+                  variant="filled"
+                  value={item.lastName}
+                  onChange={(e) => changeHandle(index, e)}
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
             {index > 0 && (
               <IconButton
                 color="error"
                 sx={{ margin: "15px 0" }}
                 onClick={() => deleteHandler(index)}
+                size="small"
               >
                 <RemoveIcon />
               </IconButton>
@@ -76,11 +87,11 @@ const Form = () => {
               color="success"
               sx={{ margin: "15px 0" }}
               onClick={() => addHandler()}
+              size="small"
             >
               <AddIcon />
             </IconButton>
-            <hr />
-          </div>
+          </Box>
         ))}
         <Button
           sx={{ margin: "5px" }}
@@ -94,7 +105,7 @@ const Form = () => {
           Send
         </Button>
       </form>
-    </div>
+    </Container>
   );
 };
 
